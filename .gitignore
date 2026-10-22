@@ -166,5 +166,5 @@ cython_debug/
 # Test files
 /tests/*output*
 
-constants.py
-**/constants.py
+# constants.py
+# **/constants.py
