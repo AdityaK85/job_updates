@@ -1,5 +1,5 @@
 import unittest
-import naukri
+import index
 import os
 import io
 from pypdf import PdfReader, PdfWriter
@@ -7,16 +7,16 @@ from pypdf import PdfReader, PdfWriter
 
 class Test(unittest.TestCase):
     def test_naukri(self):
-        (status, driver) = naukri.naukriLogin(headless=True)
+        (status, driver) = index.naukriLogin(headless=True)
         if not status:
             print(driver.page_source)
-        naukri.tearDown(driver)
+        index.tearDown(driver)
         self.assertFalse(status)
 
     
     def test_update_resume(self):
-        originalResumePath = naukri.originalResumePath
-        modifiedResumePath = naukri.modifiedResumePath
+        originalResumePath = index.originalResumePath
+        modifiedResumePath = index.modifiedResumePath
         # Ensure the directory for the resume exists
         os.makedirs(os.path.dirname(originalResumePath), exist_ok=True)
         os.makedirs(os.path.dirname(modifiedResumePath), exist_ok=True)
@@ -28,7 +28,7 @@ class Test(unittest.TestCase):
         with open(originalResumePath, "wb") as f:
             writer.write(f)
 
-        result_path = naukri.UpdateResume()
+        result_path = index.UpdateResume()
         # Check if the modified PDF file is created
         self.assertTrue(os.path.exists(result_path))
         self.assertIn(modifiedResumePath, result_path)

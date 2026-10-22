@@ -21,17 +21,24 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service as ChromeService
-import constants
+
+USERNAME = "adityakothekar79@gmail.com"
+PASSWORD = "vedant85309"
+MOBILE = "8530926168"
+ORIGINAL_RESUME_PATH=r"C:\Users\HP\Downloads\Aditya_Kothekar_Python_Developer_Resume.pdf"
+MODIFIED_RESUME_PATH=r"C:\Users\HP\Downloads\Aditya_Kothekar_Python_Developer_Resume.pdf"
+NAUKRI_LOGIN_URL="https://www.naukri.com/nlogin/login"
+NAUKRI_PROFILE_URL="https://www.naukri.com/mnjuser/profile"
 
 # Add folder Path of your resume
-originalResumePath = constants.ORIGINAL_RESUME_PATH
+originalResumePath = ORIGINAL_RESUME_PATH
 # Add Path where modified resume should be saved
-modifiedResumePath = constants.MODIFIED_RESUME_PATH
+modifiedResumePath = MODIFIED_RESUME_PATH
 
 # Update your naukri username and password here before running
-username = constants.USERNAME
-password = constants.PASSWORD
-mob = constants.MOBILE
+username = USERNAME
+password = PASSWORD
+mob = MOBILE
 
 # False if you dont want to add Random HIDDEN chars to your resume
 updatePDF = False
@@ -42,7 +49,7 @@ headless = False
 # ----- No other changes required -----
 
 # Set login URL
-NaukriURL = constants.NAUKRI_LOGIN_URL
+NaukriURL = NAUKRI_LOGIN_URL
 
 logging.basicConfig(
     level=logging.INFO, filename="naukri.log", format="%(asctime)s    : %(message)s"
@@ -434,7 +441,7 @@ def UploadResume(driver, resumePath):
         saveXpath = "//button[@type='button']"
         close_locator = "//*[contains(@class, 'crossIcon')]"
 
-        driver.get(constants.NAUKRI_PROFILE_URL)
+        driver.get(NAUKRI_PROFILE_URL)
 
         time.sleep(2)
         if WaitTillElementPresent(driver, close_locator, "XPATH", 10):
@@ -475,7 +482,6 @@ def UploadResume(driver, resumePath):
     except Exception as e:
         catch(e)
     time.sleep(2)
-
 
 def main():
     log_msg("-----Naukri.py Script Run Begin-----")
