@@ -22,6 +22,19 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service as ChromeService
 
+from http.server import BaseHTTPRequestHandler
+import json
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+
+        self.wfile.write(
+            json.dumps({"status": "success"}).encode()
+        )
+
 USERNAME = "adityakothekar79@gmail.com"
 PASSWORD = "vedant85309"
 MOBILE = "8530926168"
